@@ -1,0 +1,11 @@
+{
+  "name": "testany",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "cd client && npm run-script build && cd ../server && npm run-script start"
+  },
+  "author": "Costa",
+  "license": "ISC"
+}
