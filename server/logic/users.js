@@ -29,9 +29,7 @@ const GetListUsers = () => usersRepo.GetListUsers();
 
 const RemoveUserAndAllData = userId => {
     return usersRepo.RemoveUserById(userId)
-        .then(() => {
-            return searchRepo.RemoveQueriesByUserId(userId)
-        })
+        .then(() => searchRepo.RemoveQueriesByUserId(userId))
 }
 
 module.exports = {

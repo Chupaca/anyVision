@@ -43,7 +43,7 @@ const Login = (req, res) => {
                     payload.token = token;
                     res.send(payload)
                 } else {
-                    res.sendStatus(203)
+                    res.sendStatus(403)
                 }
             })
     } else {
@@ -51,9 +51,11 @@ const Login = (req, res) => {
     }
 }
 
+
+// validate auth users 
 const ValidateUser = (req, res, next) => {
     const bearer = req.headers['authorization']
-    if (bearer) {
+    if (bearer && bearer.split(' ')[1] !== 'null') {
         let user = jwt.verify(bearer.split(' ')[1], process.env.SECRET_KEY)
         if (user) {
             req.user = user;
@@ -67,6 +69,8 @@ const ValidateUser = (req, res, next) => {
     }
 }
 
+
+// management users
 const GetListUsers = (req, res) => {
     userLogic.GetListUsers()
         .then(list => res.send(list))

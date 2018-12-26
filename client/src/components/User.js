@@ -30,7 +30,7 @@ class User extends Component {
         getListUsers().then(usersList => {
             console.log(usersList)
             if (usersList.message) {
-                this.setState({ message: "Not login", usersList: [] })
+                this.setState({ message: "not logged", usersList: [] })
             } else {
                 this.setState(usersList)
             }

@@ -7,7 +7,6 @@ const connection = require("./connectionmongo");
 const { baseRead, baseWrite } = connection;
 const writer = baseWrite.collection("searches");
 const reader = baseRead.collection("searches");
-const mongoHelper = require("mongoskin").helper;
 
 const GetBySearch = search_value => {
     return request.getAsync({

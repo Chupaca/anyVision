@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import jwt_decode from 'jwt-decode'
 import { search, getTrack, getTop10 } from './UserFunctions'
 
 class Search extends Component {
@@ -22,8 +21,8 @@ class Search extends Component {
         e.preventDefault()
         const searchValue = this.state.search_value
         search(searchValue).then(({ resultCount, results }) => {
-            if (resultCount === 'not login') {
-                this.setState({message : 'Not Login', searchResults: []})
+            if (resultCount === 'not logged') {
+                this.setState({message : 'not logged', searchResults: []})
             } else if (resultCount > 0) {
                 this.setState({ searchResults: results, message:'' })
             } else {
@@ -47,8 +46,8 @@ class Search extends Component {
     }
     getTop() {
         getTop10().then(({ resultCount, results }) => {
-            if (resultCount === 'not login') {
-                this.setState({message : 'Not Login', searchResults: []})
+            if (resultCount === 'not logged') {
+                this.setState({message : 'not logged', searchResults: []})
             } else if (resultCount > 0) {
                 this.setState({ searchResults: results, message:'' })
             } else {

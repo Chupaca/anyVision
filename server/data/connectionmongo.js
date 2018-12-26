@@ -1,7 +1,7 @@
 'use strict'
 
-var connectionStringWriter = require("../config.js").DB.ConnectionStringWriter;
-var connectionStringReader = require("../config.js").DB.ConnectionStringReader;
+const connectionStringWriter = require("../config.js").DB.ConnectionStringWriter;
+const connectionStringReader = require("../config.js").DB.ConnectionStringReader;
 
 
 const promise = require("bluebird");
@@ -15,10 +15,6 @@ Object.keys(mongoskin).map((key) => {
 });
 promise.promisifyAll(mongoskin);
 
-exports.baseRead = mongoskin.db(connectionStringReader, {
-    w : 0
-});
+exports.baseRead = mongoskin.db(connectionStringReader, { w: 0 });
 
-exports.baseWrite = mongoskin.db(connectionStringWriter, {
-    w : 1
-});
+exports.baseWrite = mongoskin.db(connectionStringWriter, { w: 1 });

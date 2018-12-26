@@ -7,6 +7,7 @@ class Login extends Component {
         this.state = {
             email: '',
             password: '',
+            message:''
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -27,6 +28,10 @@ class Login extends Component {
         login(user).then(res => {
             if (res) {
                 this.props.history.push(`/`)
+            }else{
+                this.setState({
+                    message: 'User not exists!'
+                });
             }
         })
     }
@@ -62,6 +67,12 @@ class Login extends Component {
                         </form>
                     </div>
                 </div>
+                {this.state.message !== '' ?
+                    <div className="alert alert-warning">
+                        <strong>Warning!</strong> {this.state.message}
+                    </div>
+                    : ''
+                }
             </div>
         )
     }

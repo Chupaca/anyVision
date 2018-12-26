@@ -25,6 +25,7 @@ const GetToP10 = userId => {
         })
 }
 
+// count and sort tracks for top
 function get10IdsByCount(Ids) {
     let ids = Ids.reduce((prev, curr) => {
         if (curr != "null" && !prev[curr]) {
@@ -40,7 +41,7 @@ function get10IdsByCount(Ids) {
         sortable.push([id, ids[id]]);
     }
 
-    sortable.sort(function (a, b) {
+    sortable.sort((a, b) => {
         return b[1] - a[1];
     });
     return sortable.slice(0, 10).map(arrId => arrId[0])

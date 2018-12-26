@@ -9,8 +9,7 @@ export const register = newUser => {
             pass: newUser.password,
             admin: newUser.admin
         })
-        .then(res => {
-            console.log('Registered!')
+        .then(() => {
             return true
         })
         .catch(err => {
@@ -25,15 +24,14 @@ export const login = user => {
             email: user.email,
             password: user.password
         })
-        .then(res => {
-
-            sessionStorage.setItem('usertoken', res.data.token)
-            sessionStorage.setItem('firstName', res.data.firstName)
-            return res.data.token
+        .then(resultLogin => {
+            sessionStorage.setItem('usertoken', resultLogin.data.token)
+            sessionStorage.setItem('firstName', resultLogin.data.firstName)
+            return true
         })
         .catch(err => {
             console.log(err)
-            return ''
+            return false
         })
 }
 
@@ -41,12 +39,12 @@ export const login = user => {
 export const search = searchValue => {
     return axios
         .get('search?search_value=' + searchValue, { headers: { "Authorization": `Bearer ${sessionStorage.getItem('usertoken')}` } })
-        .then(res => {
+        .then(resultSearch => {
             try {
-                if (res === null) {
+                if (resultSearch === null) {
                     return {}
                 }
-                let resultsSearched = JSON.parse(res.data)
+                let resultsSearched = JSON.parse(resultSearch.data)
                 return resultsSearched
             }
             catch (err) {
@@ -54,7 +52,7 @@ export const search = searchValue => {
             }
         })
         .catch(err => {
-            return { resultCount: 'not login' }
+            return { resultCount: 'not logged' }
         })
 }
 
@@ -71,7 +69,7 @@ export const getTrack = item => {
             }
         })
         .catch(err => {
-            return { resultCount: 'not login' }
+            return { resultCount: 'not logged' }
         })
 }
 
@@ -93,7 +91,7 @@ export const getTop10 = () => {
             }
         })
         .catch(err => {
-            return { resultCount: 'not login' }
+            return { resultCount: 'not logged' }
         })
 }
 

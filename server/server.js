@@ -39,11 +39,7 @@ app.use((err, req, res, next) => {
 });
 
 
-// if (process.env.NODE_ENV === 'production') {
-    app.use('/', express.static('../client/build'))
-// }else{
-//     app.use('/', express.static(__dirname + '/public'))
-// }
+app.use('/', express.static('../client/build'))
 
 
 app.use('/users', require('./routes/users'))
@@ -53,6 +49,8 @@ http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
 
+
+//========= Exceptions ================================
 process.on('uncaughtException', function (error) {
     if (error) {
         console.error("Not cached exception with out stack! : " + error.stack);
